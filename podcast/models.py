@@ -6,6 +6,8 @@ class Series(models.Model):
     title = models.CharField(max_length = 100)
     description = models.TextField()
     owner = models.ForeignKey(User)
+    contributors = models.ManyToManyField(User)
+    transcriptions_are_free = models.BooleanField(default = "True")
 
 class Episode(models.Model):
     series = models.ForeignKey(Series)
@@ -13,7 +15,7 @@ class Episode(models.Model):
     title = models.CharField(max_length = 100)
     description = models.TextField()
     keywords = models.CharField(max_length = 100)
-    transcription = models.TextField() # Sell this?
+    transcription = models.TextField()
     published = models.BooleanField()
     pub_date = models.DateTimeField(auto_now = True)
     audio_file = models.FileField(upload_to = episode_path)

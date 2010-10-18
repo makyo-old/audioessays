@@ -1,11 +1,11 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('',
-    (r'^entry/', ''), # read
-    (r'^user/', ''), # list by user
-    (r'^series/', ''), # list by series
-    (r'^episode/', ''), # list by episode
-    (r'^post/', ''), # create entry
-    (r'^edit/', ''), # update entry
-    (r'^delete/', '') # delete entry
+urlpatterns = patterns('audioessays.blog.views',
+    (r'^entry/(?P<entry_id>\d+)/$', 'show_entry'),
+    (r'^user/(?P<username>.+)/$', 'list_by_user'),
+    (r'^series/(?P<podcast_slug>.+)/$', 'list_by_series'),
+    (r'^episode/(?P<episode_id>\d+)/$', 'list_by_episode'),
+    (r'^post/', 'create_entry'),
+    (r'^edit/(?P<entry_id>\d+)/$', 'edit_entry'),
+    (r'^delete/(?P<entry_id>\d+)/$', 'delete_entry')
 )
